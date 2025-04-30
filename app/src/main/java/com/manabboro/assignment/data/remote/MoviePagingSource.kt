@@ -2,6 +2,7 @@ package com.manabboro.assignment.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.manabboro.assignment.BuildConfig
 import com.manabboro.assignment.model.Movie
 
 class MoviePagingSource(
@@ -15,7 +16,7 @@ class MoviePagingSource(
                 movieApiService.getTrendingMovies(
                     page = page,
                     title = "batman",
-                    apiKey = "df78df1e"
+                    apiKey = BuildConfig.API_KEY
                 )
             LoadResult.Page(
                 data = response.movies,

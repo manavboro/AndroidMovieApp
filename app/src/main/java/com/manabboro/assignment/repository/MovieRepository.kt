@@ -2,6 +2,7 @@ package com.manabboro.assignment.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import com.manabboro.assignment.BuildConfig
 import com.manabboro.assignment.data.remote.MovieApiService
 import com.manabboro.assignment.data.remote.MoviePagingSource
 import com.manabboro.assignment.model.Movie
@@ -17,6 +18,8 @@ class MovieRepository @Inject constructor(private val movieApiService: MovieApiS
     }
 
     suspend fun getMovieDetail(movieId: String): MovieDetail {
-        return movieApiService.getMovieDetails(movieId, apiKey = "df78df1e")
+        return movieApiService.getMovieDetails(
+            movieId, apiKey = BuildConfig.API_KEY
+        )
     }
 }

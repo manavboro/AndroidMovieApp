@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -19,6 +21,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        val localProperties = Properties()
+        localProperties.load(project.rootProject.file("local.properties").inputStream())
+        val apiKey = localProperties.getProperty("API_KEY") ?: ""
+        val userApiKey = localProperties.getProperty("USER_API_KEY") ?: ""
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
+        buildConfigField("String", "USER_API_KEY", "\"$userApiKey\"")
 
     }
 
