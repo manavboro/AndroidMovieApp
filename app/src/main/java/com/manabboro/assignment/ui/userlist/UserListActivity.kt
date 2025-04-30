@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.manabboro.assignment.R
 import com.manabboro.assignment.ui.adduser.AddUserActivity
+import com.manabboro.assignment.ui.movielist.MovieListActivity
 import com.manabboro.assignment.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -35,8 +36,9 @@ class UserListActivity : AppCompatActivity() {
         }
 
         userAdapter = UserAdapter { user ->
-            {
-
+            run {
+                val intent = Intent(this, MovieListActivity::class.java)
+                startActivity(intent)
             }
         }
 
@@ -46,7 +48,6 @@ class UserListActivity : AppCompatActivity() {
         recyclerView.adapter = userAdapter?.withLoadStateFooter(
             footer = UserLoadStateAdapter { userAdapter?.retry() }
         )
-
 
         lifecycleScope.launchWhenStarted {
             viewModel.users.collectLatest { pagingData ->

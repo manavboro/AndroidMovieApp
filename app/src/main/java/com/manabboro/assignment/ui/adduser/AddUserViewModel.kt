@@ -21,7 +21,6 @@ import javax.inject.Inject
 class AddUserViewModel @Inject constructor(
     private val repository: AddUserRepository,
     @ApplicationContext private val context: Context
-
 ) : ViewModel() {
 
     fun addUser(name: String, job: String) {

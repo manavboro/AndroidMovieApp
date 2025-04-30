@@ -18,6 +18,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
     }
 
     buildTypes {
@@ -40,6 +42,7 @@ android {
     buildFeatures {
         dataBinding = true
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -67,8 +70,8 @@ dependencies {
     implementation(libs.room.ktx)
 
     implementation(libs.paging.runtime)
-    implementation (libs.glide)
-    implementation (libs.okhttp.profiler)
+    implementation(libs.glide)
+    implementation(libs.okhttp.profiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

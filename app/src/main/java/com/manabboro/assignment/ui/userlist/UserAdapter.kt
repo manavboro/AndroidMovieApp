@@ -22,7 +22,6 @@ class UserAdapter(private val onItemClick: (User) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(user: User) {
-            Log.d("MANAB_BUG", user.first_name)
             binding.textViewName.text = "${user.first_name} ${user.last_name}"
             Glide.with(binding.root.context).load(user.avatar).into(binding.imageViewAvatar);
             binding.root.setOnClickListener { onItemClick(user) }

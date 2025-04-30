@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.manabboro.assignment.data.local.AppDatabase
 import com.manabboro.assignment.data.local.UserDao
 import com.manabboro.assignment.data.remote.ApiKeyInterceptor
+import com.manabboro.assignment.data.remote.MovieApiService
 import com.manabboro.assignment.data.remote.UserApiService
 import com.manabboro.assignment.repository.UserRepository
 import com.manabboro.assignment.repository.UserRepositoryImpl
@@ -24,39 +25,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
-    @Singleton
-    @Provides
-    fun provideOkHttpClient(): OkHttpClient {
-        val builder = OkHttpClient.Builder()
-        if (BuildConfig.DEBUG) {
-            builder.addInterceptor(OkHttpProfilerInterceptor())
-        }
-        builder.addInterceptor(ApiKeyInterceptor())
-
-        return builder.build()
-    }
-
-
-    @Singleton
-    @Provides
-    fun provideUserApiService(okHttpClient: OkHttpClient): UserApiService {
-        return Retrofit.Builder()
-            .baseUrl("https://reqres.in/api/")
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(UserApiService::class.java)
-    }
-//
-//    @Provides
-//    fun provideMovieApiService(): MovieApiService {
-//        return Retrofit.Builder()
-//            .baseUrl("https://api.themoviedb.org/3/")
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//            .create(MovieApiService::class.java)
-//    }
 
     @Singleton
     @Provides
