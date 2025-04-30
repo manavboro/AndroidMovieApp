@@ -12,7 +12,11 @@ class MoviePagingSource(
         return try {
             val page = params.key ?: 1
             val response =
-                movieApiService.getTrendingMovies(page = page, title = "batman", apiKey = "df78df1e")
+                movieApiService.getTrendingMovies(
+                    page = page,
+                    title = "batman",
+                    apiKey = "df78df1e"
+                )
             LoadResult.Page(
                 data = response.movies,
                 prevKey = if (page == 1) null else page - 1,
